@@ -48,7 +48,8 @@ pipeline {
             steps {
 		 sh "ls -la ${pwd()}"
 		 //sh "trivy fs --format table -o trivy-fs-report.html ." 
-		 sh "trivy repo ./"              
+		 //sh "trivy repo ./"
+		sh "trivy fs ./Pipfile.lock"
             }
         }
 	
