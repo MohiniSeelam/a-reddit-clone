@@ -6,9 +6,9 @@ pipeline {
     }
     environment {
         SCANNER_HOME = tool 'sonar-scanner'
-        APP_NAME = "reddit-clone-pipeline"
+        APP_NAME = "reddit-clone-app"
         RELEASE = "1.0.0"
-        DOCKER_USER = "ashfaque9x"
+        DOCKER_USER = "mohini573"
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
@@ -70,25 +70,5 @@ pipeline {
                  }
              }
          }
-	 stage ('Cleanup Artifacts') {
-             steps {
-                 script {
-                      sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-                      sh "docker rmi ${IMAGE_NAME}:latest"
-                 }
-             }
-         }
      }
-     post {
-        always {
-           emailext attachLog: true,
-               subject: "'${currentBuild.result}'",
-               body: "Project: ${env.JOB_NAME}<br/>" +
-                   "Build Number: ${env.BUILD_NUMBER}<br/>" +
-                   "URL: ${env.BUILD_URL}<br/>",
-               to: 'mouniseelam28@gmail.com',                              
-               attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
-        }
-     }
-    
-}
+     
