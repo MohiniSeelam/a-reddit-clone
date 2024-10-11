@@ -46,7 +46,9 @@ pipeline {
         }
         stage('TRIVY FS SCAN') {
             steps {
-                sh "trivy fs . --degug > trivyfs.txt"               
+		 sh "ls -la ${pwd()}"
+		 sh "trivy fs --format table -o trivy-fs-report.html ." 
+		 sh "trivy repo ./"              
             }
         }
 	
