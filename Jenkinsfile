@@ -12,8 +12,6 @@ pipeline {
         DOCKER_PASS = 'dockerhub'
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-	JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
-	TRIVY_PATH = '/usr/bin/trivy'  // Explicitly set the path for trivy
     }
     stages {
         stage('clean workspace') {
@@ -48,10 +46,7 @@ pipeline {
         }
         stage('TRIVY FS SCAN') {
             steps {
-	        script {
-                     sh '/usr/bin/trivy fs . > trivyfs.txt'
-                }
-                
+               sh 'trivy fs . > trivyfs.txt'               
             }
         }
 	
