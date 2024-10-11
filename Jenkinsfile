@@ -47,7 +47,7 @@ pipeline {
         stage('TRIVY FS SCAN') {
             steps {
 		 sh "ls -la ${pwd()}"
-		 sh "trivy fs --format table -o trivy-fs-report.html ." 
+		 //sh "trivy fs --format table -o trivy-fs-report.html ." 
 		 sh "trivy repo ./"              
             }
         }
