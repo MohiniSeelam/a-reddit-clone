@@ -48,11 +48,11 @@ pipeline {
         stage('TRIVY FS SCAN') {
             steps {
 	        script {
-            sh '/usr/bin/trivy fs . > trivyfs.txt'
+                     sh '/usr/bin/trivy fs . > trivyfs.txt'
                 }
                 
-             }
-         }
+            }
+        }
 	
      }
      
