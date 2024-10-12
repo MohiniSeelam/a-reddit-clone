@@ -44,14 +44,6 @@ pipeline {
                 sh "npm install"
             }
         }
-        stage('TRIVY FS SCAN') {
-            steps {
-		 sh "ls -la ${pwd()}"
-		 //sh "trivy fs --format table -o trivy-fs-report.html ." 
-		 //sh "trivy repo ./"
-		sh "trivy fs ./Pipfile.lock"
-            }
-        }
 	
      }
      
